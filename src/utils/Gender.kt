@@ -1,4 +1,4 @@
-package models
+package utils
 
 enum class Gender {
     MALE,

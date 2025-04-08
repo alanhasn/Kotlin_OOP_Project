@@ -1,10 +1,12 @@
+package utils
+
 enum class Days(val isWeekend: Boolean) {
-    SUNDAY(true),
+    SUNDAY(false),
     MONDAY(false),
     TUESDAY(false),
     WEDNESDAY(false),
     THURSDAY(false),
-    FRIDAY(false),
+    FRIDAY(true),
     SATURDAY(true);
 
     fun printStatus() {
