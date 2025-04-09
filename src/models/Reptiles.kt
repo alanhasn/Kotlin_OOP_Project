@@ -1,59 +1,67 @@
 package models
 
 // -------- Imports --------
-import data.AnimalType
-import utils.Days
+import data.AnimalInfo
 import interfaces.Creepable
 import interfaces.Trainable
-import utils.Gender
 
-// class Reptiles represent all types of Reptiles
-// Its Inherit from Animal Abstract class and Creep-able and Trainable Interfaces
+// class Reptiles represents all types of reptiles
+// Inherits from Animal abstract class and implements Creepable and Trainable Interfaces
 class Reptiles(
-    // attributes
-    name: String,
-    age: Int,
-    type: AnimalType,
-    gender: Gender,
-    color: String,
-    weight: Double,
-    isWild: Boolean,
-    isCarnivore: Boolean,
-    feedingDays: Days,
-): Animal(name , age , type , gender , color , weight , isWild , isCarnivore , feedingDays) , Creepable , Trainable
-{
-    // Method Overriding
-    override fun makeSound() {
-        when (type.name.lowercase()) {
-            // Add Specif sound for each specif Reptiles
-            "snake" -> println("The $name hisses!")
-            "crocodile" -> println("The $name growls and bellows!")
-            "lizard" -> println("The $name rustles quietly through the leaves.")
-            "turtle" -> println("The $name grunts softly.")
-            else -> println("The $name makes a quiet reptile sound.")
+    info: AnimalInfo
+) : Animal(info), Creepable, Trainable {
+
+    // Counter for how many reptiles in the system
+    companion object ReptileCounter {
+        var count = 0
+        fun count(): String {
+            return "🦎 Total reptiles in the system: $count"
         }
     }
-    override fun canCreep() {
-        println("$name Can Creep")
-    }
-    override fun feedingSchedule() {
-        println("$name is get fed every $feedingDay")
-    }
-    override fun canTrain() {
-        println("The $name is not Trainable")
-    }
-    override fun trainingSchedule() {
-        println("No Schedule is available for the $name because the $name is not Trainable")
+
+    init {
+        count++
     }
 
-    // overloading for feed method
-    fun feed(){
-        println("the $name is Eating now")
+    // ---------- Overridden Methods ----------
+
+    override fun makeSound() {
+        when (animalInfo.name.lowercase()) {
+            "snake" -> println("🐍 The ${animalInfo.name} hisses!")
+            "crocodile" -> println("🐊 The ${animalInfo.name} growls and bellows!")
+            "lizard" -> println("🦎 The ${animalInfo.name} rustles quietly through the leaves.")
+            "turtle" -> println("🐢 The ${animalInfo.name} grunts softly.")
+            else -> println("🦖 The ${animalInfo.name} makes a quiet reptile sound.")
+        }
     }
-    fun feed(foodType : String) {
-        println("$name eat $foodType")
+
+    override fun canCreep() {
+        println("🦎 ${animalInfo.name} can creep stealthily.")
     }
+
+    override fun feedingSchedule() {
+        println("🍽️ ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
+    }
+
+    override fun canTrain() {
+        println("🚫 The ${animalInfo.name} is not trainable.")
+    }
+
+    override fun trainingSchedule() {
+        println("📛 No training schedule for ${animalInfo.name} because it's not trainable.")
+    }
+
+    // ---------- Feeding Methods (Overloading) ----------
+
+    fun feed() {
+        println("🍗 The ${animalInfo.name} is eating now.")
+    }
+
+    fun feed(foodType: String) {
+        println("🥩 ${animalInfo.name} eats $foodType.")
+    }
+
     fun feed(foodType: String, portions: Int) {
-        println("$name ate $portions portions of $foodType")
+        println("🍽️ ${animalInfo.name} ate $portions portions of $foodType.")
     }
 }

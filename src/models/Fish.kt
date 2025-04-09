@@ -1,55 +1,61 @@
 package models
 
 // ---------- Imports ----------
-import data.AnimalType
+import data.AnimalInfo
 import interfaces.Swimable
 import interfaces.Trainable
-import utils.Days
-import utils.Gender
 
 // Fish Class for all types of fish
-// inherit from Animal abstract class and Swim-able and Trainable Interfaces
+// Inherits from Animal abstract class and Swimable & Trainable Interfaces
 class Fish (
-    // attributes
-    name: String,
-    age: Int,
-    type: AnimalType,
-    gender: Gender,
-    color: String,
-    weight: Double,
-    isWild: Boolean,
-    isCarnivore: Boolean,
-    feedingDay: Days,
-): Animal(name , age , type , gender , color , weight , isWild , isCarnivore , feedingDay) , Swimable , Trainable
-{
-    //  --------- Override Methods ---------
+    info: AnimalInfo
+) : Animal(info), Swimable, Trainable {
+
+    // Counter for how many Fish in the system
+    companion object FishCounter {
+        var count = 0
+        fun count(): String {
+            return "🐟 Total fish in the system: $count"
+        }
+    }
+
+    init {
+        count++
+    }
+
+    // --------- Override Methods ---------
+
     override fun makeSound() {
-        println("The $name makes low-frequency underwater sounds")
+        println("🌊 The ${animalInfo.name} makes low-frequency underwater sounds.")
     }
+
     override fun canSwim() {
-        println("the $name can swim")
+        println("🐠 The ${animalInfo.name} is swimming gracefully.")
     }
+
     override fun feedingSchedule() {
-        println("$name is get fed every $feedingDay")
+        println("🍽️ ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
     }
+
     override fun canTrain() {
-        println("The $name is not Trainable")
+        println("🚫 The ${animalInfo.name} is not trainable.")
     }
+
     override fun trainingSchedule() {
-        println("No Schedule is available for the $name because the $name is not Trainable")
+        println("📛 No training schedule for the ${animalInfo.name} because it's not trainable.")
     }
 
-    // --------- overloading feed method  ---------
-    fun feed(){
-        println("the $name is Eating now")
+    // --------- Feeding Methods (Overloading) ---------
+
+    fun feed() {
+        println("🍤 The ${animalInfo.name} is eating now.")
     }
-    fun feed(foodType : String) {
-        println("$name eat $foodType")
+
+    fun feed(foodType: String) {
+        println("🥣 ${animalInfo.name} eats $foodType.")
     }
+
     fun feed(foodType: String, portions: Int) {
-        println("$name ate $portions portions of $foodType")
+        println("🍽️ ${animalInfo.name} ate $portions portions of $foodType.")
     }
-
-
 }
-

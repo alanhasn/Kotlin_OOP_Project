@@ -1,59 +1,69 @@
 package models
 
 //  --------- Imports  ---------
-import data.AnimalType
+import data.AnimalInfo
 import interfaces.Playable
 import interfaces.Trainable
 import utils.Days
-import utils.Gender
 
 // Mammal class for mammal animal type representation
-// inherit from Animal abstract class and Playable and Trainable Interfaces
+// Inherits from Animal abstract class and implements Playable and Trainable Interfaces
 class Mammal (
-    name: String,
-    age: Int,
-    type: AnimalType,
-    gender: Gender,
-    color: String,
-    weight: Double,
-    isWild: Boolean,
-    isCarnivore: Boolean,
-    feedingDays: Days
-): Animal(name , age , type , gender , color , weight , isWild , isCarnivore , feedingDays) , Playable , Trainable
-{
-    // Overriding Methods
-    override fun makeSound() {
-        when (type.name.lowercase()) {
-            // Add Specif sound for each specif Mammal
-            "elephant" -> println("The $name trumpets loudly!")
-            "lion" -> println("The $name roars fiercely!")
-            "dog" -> println("The $name barks loudly!")
-            "cat" -> println("The $name meows softly!")
-            "horse" -> println("The $name neighs energetically!")
-            else -> println("The $name makes a mammal sound.")
+    info: AnimalInfo
+) : Animal(info), Playable, Trainable {
+
+    // to count how many Mammals in the system
+    companion object MammalCounter {
+        var count = 0
+        fun count(): String {
+            return "🐾 Total mammals in the system: $count"
         }
     }
-    override fun canPlay() {
-        println("the $name can Play")
-    }
-    override fun feedingSchedule() {
-        println("$name is get fed every $feedingDay")
-    }
-    override fun canTrain() {
-        println("The $name is Trainable")
-    }
-    override fun trainingSchedule() {
-        println("The $name get train every ${Days.FRIDAY} and ${Days.THURSDAY}")
+
+    init {
+        count++
     }
 
-    // overloading feed method
-    fun feed(){
-        println("the $name is Eating now")
+    // ---------- Overridden Methods ----------
+
+    override fun makeSound() {
+        when (animalInfo.name.lowercase()) {
+            "elephant" -> println("🐘 The ${animalInfo.name} trumpets loudly!")
+            "lion" -> println("🦁 The ${animalInfo.name} roars fiercely!")
+            "dog" -> println("🐶 The ${animalInfo.name} barks loudly!")
+            "cat" -> println("🐱 The ${animalInfo.name} meows softly!")
+            "horse" -> println("🐴 The ${animalInfo.name} neighs energetically!")
+            else -> println("🐾 The ${animalInfo.name} makes a mammal sound.")
+        }
     }
-    fun feed(foodType : String) {
-        println("$name eat $foodType")
+
+    override fun canPlay() {
+        println("🎾 The ${animalInfo.name} loves to play!")
     }
+
+    override fun feedingSchedule() {
+        println("🍽️ ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
+    }
+
+    override fun canTrain() {
+        println("📚 The ${animalInfo.name} is trainable.")
+    }
+
+    override fun trainingSchedule() {
+        println("📆 The ${animalInfo.name} trains every ${Days.FRIDAY} and ${Days.THURSDAY}.")
+    }
+
+    // ---------- Feeding Methods (Overloading) ----------
+
+    fun feed() {
+        println("🥩 The ${animalInfo.name} is eating now.")
+    }
+
+    fun feed(foodType: String) {
+        println("🍖 ${animalInfo.name} eats $foodType.")
+    }
+
     fun feed(foodType: String, portions: Int) {
-        println("$name ate $portions portions of $foodType")
+        println("🍽️ ${animalInfo.name} ate $portions portions of $foodType.")
     }
 }

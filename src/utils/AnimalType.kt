@@ -1,4 +1,4 @@
-package data
+package utils
 
 // Animal Types
 enum class AnimalType {

@@ -2,78 +2,80 @@ package models
 
 // ---------- Imports ----------
 import data.AnimalInfo
-import data.AnimalType
 import interfaces.Flyable
 import interfaces.Trainable
 import utils.Days
-import utils.Gender
 
-// class Bird represent all types of bird
-// Its Inherit from Animal Abstract class and Flyable and Trainable Interfaces
+// class Bird represents all types of birds
+// It inherits from Animal abstract class and implements Flyable & Trainable interfaces
 class Bird(
-    // Attributes
-    name: String,
-    age: Int,
-    type: AnimalType,
-    gender: Gender,
-    color: String,
-    weight: Double,
-    isWild: Boolean,
-    isCarnivore: Boolean,
-    feedingDays: Days,
-//    info: AnimalInfo,
-    ): Animal(name , age , type , gender , color , weight , isWild , isCarnivore , feedingDays) , Flyable , Trainable
-{
-    // override from Animal class
-    override fun makeSound() {
-        // Add Specif sound for each specif Bird
-        when(type.name.lowercase()){
-            "eagle" -> println("The $name screeches loudly!")
-            "parrot" -> println("The $name squawks!")
-            "owl" -> println("The $name hoots softly!")
-            else -> println("The $name makes bird sound")
+    info: AnimalInfo,
+) : Animal(info), Flyable, Trainable {
+
+    // to count how many birds in the system
+    companion object BirdCounter {
+        var count = 0
+        fun count(): String {
+            return "🐦 Total birds in the system: $count"
         }
     }
 
-    // override from Flyable Interface for Fly ability
+    init {
+        count++
+    }
+
+    // override from Animal class
+    override fun makeSound() {
+        // Add specific sound for each specific bird
+        when (animalInfo.name.lowercase()) {
+            "eagle" -> println("🦅 The ${animalInfo.name} screeches loudly!")
+            "parrot" -> println("🦜 The ${animalInfo.name} squawks!")
+            "owl" -> println("🦉 The ${animalInfo.name} hoots softly!")
+            else -> println("🐦 The ${animalInfo.name} makes a bird sound.")
+        }
+    }
+
+    // override from Flyable Interface
     override fun canFly() {
-        println("the $name can Fly")
+        println("✨ The ${animalInfo.name} can fly high in the sky!")
     }
 
     // override from Animal class
     override fun feedingSchedule() {
-        println("$name is get fed every $feedingDay")
+        println("🍽️ ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
     }
 
-    // override from Trainable class for train ability
+    // override from Trainable interface
     override fun canTrain() {
-        println("The $name is Trainable")
+        println("🏋️ The ${animalInfo.name} is trainable and responds well.")
     }
 
     override fun trainingSchedule() {
-        println("The $name get train every ${Days.SATURDAY}")
+        println("📚 The ${animalInfo.name} trains every 📆 ${Days.SATURDAY}")
     }
 
-    // Specif action for the Birds, Walk ability
-    fun walk(){
-        println("the $name can Walk")
+    // Specific action: Walk
+    fun walk() {
+        println("🚶‍♂️ The ${animalInfo.name} can walk on the ground.")
     }
 
-    // Specif action for the Birds, feed ability
-    fun feed(){
-        println("the $name is Eating now")
+    // Feeding behavior (default)
+    fun feed() {
+        println("🍗 The ${animalInfo.name} is eating now.")
     }
-    // overload the feed method
-    fun feed(foodType : String) {
-        println("$name eat $foodType")
+
+    // Overloaded feed method with food type
+    fun feed(foodType: String) {
+        println("🥣 ${animalInfo.name} eats $foodType.")
     }
-    // overload the feed method
+
+    // Overloaded feed method with food type and portions
     fun feed(foodType: String, portions: Int) {
-        println("$name ate $portions portions of $foodType")
+        println("🍽️ ${animalInfo.name} ate $portions portions of $foodType.")
     }
 
-    // Specif action for the Birds, hunt ability
-    fun hunt(){
-        println("The $name can Hunt")
+    // Specific action: Hunt
+    fun hunt() {
+        println("🎯 The ${animalInfo.name} is hunting skillfully.")
     }
 }
