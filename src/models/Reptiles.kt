@@ -4,9 +4,10 @@ package models
 import data.AnimalInfo
 import interfaces.Creepable
 import interfaces.Trainable
+import utils.Days
 
 // class Reptiles represents all types of reptiles
-// Inherits from Animal abstract class and implements Creepable and Trainable Interfaces
+// Inherits from Animal abstract class and implements Creep able and Trainable Interfaces
 class Reptiles(
     info: AnimalInfo
 ) : Animal(info), Creepable, Trainable {
@@ -15,7 +16,7 @@ class Reptiles(
     companion object ReptileCounter {
         var count = 0
         fun count(): String {
-            return "🦎 Total reptiles in the system: $count"
+            return "Total reptiles in the system: $count"
         }
     }
 
@@ -36,7 +37,7 @@ class Reptiles(
     }
 
     override fun canCreep() {
-        println("🦎 ${animalInfo.name} can creep stealthily.")
+        println("${animalInfo.name} can creep stealthily.")
     }
 
     override fun feedingSchedule() {
@@ -44,11 +45,11 @@ class Reptiles(
     }
 
     override fun canTrain() {
-        println("🚫 The ${animalInfo.name} is not trainable.")
+        println("The ${animalInfo.name} is trainable.")
     }
 
     override fun trainingSchedule() {
-        println("📛 No training schedule for ${animalInfo.name} because it's not trainable.")
+        println("The Eagle trains every ${Days.THURSDAY}.")
     }
 
     // ---------- Feeding Methods (Overloading) ----------

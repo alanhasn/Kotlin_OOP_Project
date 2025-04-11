@@ -16,7 +16,7 @@ class Mammal (
     companion object MammalCounter {
         var count = 0
         fun count(): String {
-            return "🐾 Total mammals in the system: $count"
+            return "Total mammals in the system: $count"
         }
     }
 
@@ -33,20 +33,20 @@ class Mammal (
             "dog" -> println("🐶 The ${animalInfo.name} barks loudly!")
             "cat" -> println("🐱 The ${animalInfo.name} meows softly!")
             "horse" -> println("🐴 The ${animalInfo.name} neighs energetically!")
-            else -> println("🐾 The ${animalInfo.name} makes a mammal sound.")
+            else -> println(" The ${animalInfo.name} makes a mammal sound.")
         }
     }
 
     override fun canPlay() {
-        println("🎾 The ${animalInfo.name} loves to play!")
+        println(" The ${animalInfo.name} loves to play!")
     }
 
     override fun feedingSchedule() {
-        println("🍽️ ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
+        println(" ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
     }
 
     override fun canTrain() {
-        println("📚 The ${animalInfo.name} is trainable.")
+        println(" The ${animalInfo.name} is trainable.")
     }
 
     override fun trainingSchedule() {
@@ -60,10 +60,10 @@ class Mammal (
     }
 
     fun feed(foodType: String) {
-        println("🍖 ${animalInfo.name} eats $foodType.")
+        println(" ${animalInfo.name} eats $foodType.")
     }
 
     fun feed(foodType: String, portions: Int) {
-        println("🍽️ ${animalInfo.name} ate $portions portions of $foodType.")
+        println("🍽 ${animalInfo.name} ate $portions portions of $foodType.")
     }
 }

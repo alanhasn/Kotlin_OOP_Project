@@ -11,13 +11,12 @@ abstract class Animal(
     companion object AnimalCounter {
         var count: Int = 0 // count var for store the object number
         fun count(): String {
-            return "📊 The number of animals in the park is 🐾 $count"
+            return "📊 The number of animals in the park is  $count"
         }
     }
 
     init {
         count++ // plus by 1 every time new object created by Animal class
-        println("✅ New Animal Added: 🐾 Name: ${animalInfo.name}, 🎂 Age: ${animalInfo.age}, 🧬 Type: ${animalInfo.type}, 🚻 Gender: ${animalInfo.gender}")
     }
 
     // Abstract method for making sound
@@ -25,4 +24,12 @@ abstract class Animal(
 
     // Abstract method for feeding scheduling
     abstract fun feedingSchedule()
+
+    // function for getting the animals name
+    fun getAnimalsName(){
+        println("Animals name in the park")
+        for (i in animalInfo.name){
+            println("$i")
+        }
+    }
 }

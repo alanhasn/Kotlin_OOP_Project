@@ -37,26 +37,26 @@ class Bird(
 
     // override from Flyable Interface
     override fun canFly() {
-        println("✨ The ${animalInfo.name} can fly high in the sky!")
+        println("The ${animalInfo.name} can fly high in the sky!")
     }
 
     // override from Animal class
     override fun feedingSchedule() {
-        println("🍽️ ${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
+        println("${animalInfo.name} gets fed every 📅 ${animalInfo.feedingDay}")
     }
 
     // override from Trainable interface
     override fun canTrain() {
-        println("🏋️ The ${animalInfo.name} is trainable and responds well.")
+        println("The ${animalInfo.name} is trainable and responds well.")
     }
 
     override fun trainingSchedule() {
-        println("📚 The ${animalInfo.name} trains every 📆 ${Days.SATURDAY}")
+        println("The ${animalInfo.name} trains every 📆 ${Days.SATURDAY}")
     }
 
     // Specific action: Walk
     fun walk() {
-        println("🚶‍♂️ The ${animalInfo.name} can walk on the ground.")
+        println("The ${animalInfo.name} can walk on the ground.")
     }
 
     // Feeding behavior (default)
@@ -66,16 +66,16 @@ class Bird(
 
     // Overloaded feed method with food type
     fun feed(foodType: String) {
-        println("🥣 ${animalInfo.name} eats $foodType.")
+        println("${animalInfo.name} eats $foodType.")
     }
 
     // Overloaded feed method with food type and portions
     fun feed(foodType: String, portions: Int) {
-        println("🍽️ ${animalInfo.name} ate $portions portions of $foodType.")
+        println(" ${animalInfo.name} ate $portions portions of $foodType.")
     }
 
     // Specific action: Hunt
     fun hunt() {
-        println("🎯 The ${animalInfo.name} is hunting skillfully.")
+        println("The ${animalInfo.name} is hunting skillfully.")
     }
 }
